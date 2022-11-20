@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<form action="" method='POST'>
+		{# form要素をpタグで出力する #}
+		{{ form.as_p }}
+
+		<button type="submit" name="submit" id="">作成する</button>
+		{# CSRF トークンをつける #}
+		{% csrf_token %}
+	</form>
+{% endblock content %}

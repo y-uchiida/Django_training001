@@ -5,6 +5,9 @@
 {% endblock header %}
 
 {% block content %}
+	<div>
+		<a href="/create">Todoを追加する</a>
+	</div>
 	{# object_listで、指定のモデル(ここではTodoモデル)の一覧を操作できる #}
 	{% for todo in object_list %}
 	<div>
