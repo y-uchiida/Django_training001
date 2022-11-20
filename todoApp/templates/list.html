@@ -13,7 +13,9 @@
 	<div>
 		<div class='todo-list-head'>
 			<h2>{{todo.title}}</h2>
-			<span>{{todo.duedate}}</span>
+			{# Dateオブジェクト | date:<フォーマット文字列> で日付の形式を変更できる #}
+			{# date : "..." のように、スペースが空いているとエラーになる #}
+			<span>締切日: {{ todo.duedate | date:"o/n/j"}}</span>
 			<span class='badge priority-{{todo.priority}}'>{{todo.priority}}</span>
 		</div>
 		{# 個別のデータを取得できるように、todo.idを指定する #}
