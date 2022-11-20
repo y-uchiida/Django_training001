@@ -1,0 +1,23 @@
+.btn {
+  background-color: lightgray;
+  border-radius: 8px;
+  color: #333;
+  text-decoration: none;
+  padding: 8px 16px;
+  font-weight: 700;
+}
+
+.btn.blue {
+  background-color: deepskyblue;
+  color: aliceblue;
+}
+
+.btn.red {
+  background-color: crimson;
+  color: mistyrose;
+}
+
+.btn.green {
+  background-color: seagreen;
+  color: #fdfffd;
+}
