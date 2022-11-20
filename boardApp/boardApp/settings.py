@@ -118,7 +118,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+# 静的ファイルの参照用URLを指定
 STATIC_URL = '/static/'
+
+# manage.py のcorrectstatic コマンド実行後に、静的ファイルが集積されるディレクトリ
+# デプロイ先のWebサーバの公開ディレクトリなどを指定しておく
+STATIC_ROOT = BASE_DIR / 'static_files'
+
+# 静的ファイルが配置されているディレクトリを指定
+STATICFILES_DIRS = [
+    Path.joinpath(BASE_DIR, 'board/static') 
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
