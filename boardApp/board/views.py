@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.urls import reverse_lazy
+
+from django.views.generic import CreateView
 
 # ユーザーの重複登録時のエラーを読み込みし、ハンドリングに利用する
 from django.db import IntegrityError
@@ -119,6 +122,7 @@ def increase_like(req, pk):
     else:
         return redirect('/dashboard', {'error': '不正な操作が行われました'})
 
+@login_required
 def mark_read(req, pk):
     if req.method == 'POST':
         post = Post.objects.get(pk=pk)
@@ -151,3 +155,10 @@ def mark_read(req, pk):
         
     else:
         return redirect('/dashboard', {'error': '不正な操作が行われました'})
+
+@login_required
+class PostCreateView(CreateView):
+    model = Post
+    template_name = "create_post.html"
+    fields = ('title', 'message', 'user', 'attached_image')
+    success_url = reverse_lazy('dashboard')

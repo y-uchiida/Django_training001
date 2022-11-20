@@ -8,7 +8,7 @@
 {% endblock header %}
 
 {% block content %}
-
+	<a href="{% url 'create_post' %}">投稿を追加する</a>
 	{% if error %}
 		<div>
 			{{ error }}

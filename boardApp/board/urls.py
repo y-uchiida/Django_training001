@@ -14,6 +14,7 @@ from .views import dashboard
 from .views import show_post
 from .views import increase_like
 from .views import mark_read
+from .views import PostCreateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +25,7 @@ urlpatterns = [
     path('post/<int:pk>', show_post, name='show_post'),
     path('post/<int:pk>/increase_like', increase_like, name='increase_like'),
     path('post/<int:pk>/mark_read', mark_read, name='mark_read'),
+    path('post/create', PostCreateView.as_view(), name='create_post'),
 ] \
 + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) \
 + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
