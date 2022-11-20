@@ -1,8 +1,10 @@
+{# object_listで、指定のモデル(ここではTodoモデル)の一覧を操作できる #}
 <h1>Todo list</h1>
-
 {% for todo in object_list %}
 <div>
   <h2>{{todo.title}}</h2>
   <p>{{todo.memo}}</p>
+  {# 個別のデータを取得できるように、todo.idを指定する #}
+  <a href="/detail/{{todo.id}}">詳細</a>
 </div>
 {% endfor %}

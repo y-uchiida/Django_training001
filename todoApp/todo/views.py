@@ -5,6 +5,7 @@ from .models import TodoModel
 
 # ListViewをよみこみ
 from django.views.generic.list import ListView
+from django.views.generic import DetailView
 
 # Create your views here.
 
@@ -14,3 +15,11 @@ class TodoList(ListView):
     
     # 表示に利用するhtml を指定
     template_name: str = 'list.html'
+
+class TodoDetail(DetailView):
+    # リスト表示するモデルを指定
+    model = TodoModel
+
+    # 表示に利用するhtml を指定
+    template_name: str = 'detail.html'
+    
