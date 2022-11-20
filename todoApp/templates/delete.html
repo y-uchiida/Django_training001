@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<form action="" method='POST'>
+		<p>データを削除します。よろしいですか？</p>
+		<button type="submit" name="submit" id="">削除する</button>
+		{# CSRF トークンをつける #}
+		{% csrf_token %}
+	</form>
+{% endblock content %}
