@@ -12,6 +12,9 @@ from django.contrib.auth import authenticate
 # 指定のユーザーオブジェクトでログインするメソッドを読み込み
 from django.contrib.auth import login
 
+# ユーザーをログアウトさせるメソッドを読み込み
+from django.contrib.auth import logout
+
 # 認証していなければサインイン画面に遷移させるデコレータを読み込み
 from django.contrib.auth.decorators import login_required
 
@@ -72,6 +75,10 @@ def sign_in(req):
     # render() で画面描画のレスポンスを返す
     # 1. リクエストオブジェクト, 2. テンプレートのhtml, 3. 描画に用いるデータ
     return render(req, 'sign_in.html', {})
+
+def sign_out(req):
+    logout(req)
+    return redirect('sign-in')
 
 # login_required で、ログインしていなければ表示できないようにする
 @login_required
