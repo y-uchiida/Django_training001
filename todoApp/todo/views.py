@@ -11,6 +11,7 @@ from django.views.generic.list import ListView
 from django.views.generic import DetailView
 from django.views.generic import CreateView
 from django.views.generic import DeleteView
+from django.views.generic import UpdateView
 
 # Create your views here.
 
@@ -29,7 +30,7 @@ class TodoDetail(DetailView):
     template_name: str = 'detail.html'
 
 class TodoCreate(CreateView):
-    # リスト表示するモデルを指定
+    # 詳細画面に表示するモデルを指定
     model = TodoModel
 
     # 表示に利用するhtml を指定
@@ -42,12 +43,25 @@ class TodoCreate(CreateView):
     success_url = reverse_lazy('list')
 
 class TodoDelete(DeleteView):
-    # リスト表示するモデルを指定
+    # 削除するデータのモデルを指定
     model = TodoModel
 
     # 表示に利用するhtml を指定
     template_name: str = 'delete.html'
     
     # データ削除後に遷移するURLを、urls.py のルーティングで指定されたname 属性から取得する
+    success_url = reverse_lazy('list')
+
+class TodoUpdate(UpdateView):
+    # 編集画面に表示するモデルを指定
+    model = TodoModel
+
+    # 表示に利用するhtml を指定
+    template_name: str = 'update.html'
+    
+    # 画面上で操作させるフィールドをタプルで指定する
+    fields = ('title', 'memo', 'priority', 'duedate')
+    
+    # データ編集後に遷移するURLを、urls.py のルーティングで指定されたname 属性から取得する
     success_url = reverse_lazy('list')
     

@@ -5,6 +5,7 @@ from .views import TodoList
 from .views import TodoDetail
 from .views import TodoCreate
 from .views import TodoDelete
+from .views import TodoUpdate
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -19,4 +20,7 @@ urlpatterns = [
 
     # Todo削除用のviewを追加
     path('delete/<int:pk>', TodoDelete.as_view()),
+
+    # Todo編集用のviewを追加
+    path('update/<int:pk>', TodoUpdate.as_view()),
 ]

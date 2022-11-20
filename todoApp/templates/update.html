@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<form action="" method='POST'>
+		{# 編集する要素をform.<カラム名> で指定する #}
+		<div>
+			タイトル:
+			{{ form.title }}
+		</div>
+		<div>
+			内容:
+			{{ form.memo }}
+		</div>
+		<div>
+			優先度:
+			{{ form.priority }}
+		</div>
+		<div>
+			締切日:
+			{{ form.duedate }}
+		</div>
+
+		<button type="submit" name="submit" id="">編集</button>
+		{# CSRF トークンをつける #}
+		{% csrf_token %}
+	</form>
+{% endblock content %}
