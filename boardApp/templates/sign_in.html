@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>サインイン</h1>
+{% endblock header %}
+
+{% block content %}
+	{% if error %}
+		<div>エラー:{{ error }}</div>
+	{% endif %}
+	<form action="" method="POST">
+		<div>
+			<label for="username">
+				ユーザー名
+				<input type="text" id="username" name="username" />
+			</label>
+		</div>
+
+		<div>
+			<label for="password">
+				パスワード
+				<input type="password" id="password" name="password" />
+			</label>
+		</div>
+
+		<div>
+			<button type="submit">サインイン</button>
+		</div>
+		{% csrf_token %}
+	</form>
+{% endblock content %}
