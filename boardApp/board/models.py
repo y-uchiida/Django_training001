@@ -11,7 +11,7 @@ class Post(models.Model):
     message = models.TextField(_("メッセージ"))
     user = models.CharField(_("投稿者"), max_length=50)
     attached_image = models.ImageField(_("添付画像"), upload_to='attached_images', height_field=None, width_field=None, max_length=None)
-    like = models.IntegerField(_("いいね"))
-    read = models.IntegerField(_("既読者数"))
-    read_text = models.TextField(_("既読ユーザー"))
+    like = models.IntegerField(_("いいね"), null=True)
+    read = models.IntegerField(_("既読者数"), null=True)
+    read_text = models.TextField(_("既読ユーザー"), null=True)
     
