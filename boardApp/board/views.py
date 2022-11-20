@@ -21,6 +21,9 @@ from django.contrib.auth import logout
 # 認証していなければサインイン画面に遷移させるデコレータを読み込み
 from django.contrib.auth.decorators import login_required
 
+# 認証していなければサインイン画面に遷移させるミックスインクラスを読み込み
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 # 指定の条件にマッチしたオブジェクトが無ければ404 エラーを返すメソッドを読み込み
 from django.shortcuts import get_object_or_404
 
@@ -156,8 +159,7 @@ def mark_read(req, pk):
     else:
         return redirect('/dashboard', {'error': '不正な操作が行われました'})
 
-@login_required
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = "create_post.html"
     fields = ('title', 'message', 'user', 'attached_image')
