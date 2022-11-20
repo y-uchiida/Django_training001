@@ -8,6 +8,13 @@
 {% endblock header %}
 
 {% block content %}
+
+	{% if error %}
+		<div>
+			{{ error }}
+		</div>
+	{% endif %}
+
 	{% for post in posts %}
 		<div>
 			<h2>
@@ -17,6 +24,12 @@
 			</h2>
 			<div>{{post.message}}</div>
 			<p>投稿者: {{post.user}}</p>
+			<div>
+				<form action="{% url 'increase_like' post.pk %}" method="POST">
+					<button type="submit">{{post.like}} いいね</button>
+					{% csrf_token %}
+				</form>
+			</div>
 		</div>
 	{% endfor %}
 {% endblock content %}

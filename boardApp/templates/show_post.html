@@ -13,5 +13,11 @@
 	<div>
 		<img width="360" src="{{post.attached_image.url}}" alt="">
 	</div>
+	<div>
+		<form action="{% url 'increase_like' post.pk %}" method="POST">
+			<button type="submit">{{post.like}} いいね</button>
+			{% csrf_token %}
+		</form>
+	</div>
 	<a href="{%url 'dashboard'%}">一覧に戻る</a>
 {% endblock content %}

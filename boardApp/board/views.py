@@ -94,3 +94,27 @@ def dashboard(req):
 def show_post(req, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(req, 'show_post.html', {'post': post})
+
+@login_required
+def increase_like(req, pk):
+    if req.method == 'POST':
+        post = Post.objects.get(pk=pk)
+        if post is None:
+             return render(req, 'dashboard.html', {'error': '不正な操作が行われました'})
+
+        # like の値を増加させて、レコードを更新する
+        post.like += 1
+        try:
+            post.save()
+        except:
+            return render(req, 'dashboard.html', {'error': 'いいねを追加できませんでした'})
+        
+        # 値を更新出来たら、元の画面に戻す
+        # リファラが設定されていればそこに戻り、無ければダッシュボードに戻る
+        referer = req.environ.get('HTTP_REFERER')
+        if referer:
+            return redirect(referer)
+        else:
+            return redirect('/dashboard')
+    else:
+        return redirect('/dashboard', {'error': '不正な操作が行われました'})
