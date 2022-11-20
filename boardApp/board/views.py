@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from django.http import HttpResponse
 
 # ユーザーの重複登録時のエラーを読み込みし、ハンドリングに利用する
 from django.db import IntegrityError
@@ -12,6 +11,8 @@ from django.contrib.auth import authenticate
 
 # 指定のユーザーオブジェクトでログインするメソッドを読み込み
 from django.contrib.auth import login
+
+from .models import Post
 
 # Create your views here.
 
@@ -70,4 +71,6 @@ def sign_in(req):
     return render(req, 'sign_in.html', {})
 
 def dashboard(req):
-    return HttpResponse('dashboard')
+    # 投稿の全データを取得
+    posts = Post.objects.all()
+    return render(req, 'dashboard.html', {'posts': posts})
