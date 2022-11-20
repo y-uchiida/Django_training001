@@ -8,7 +8,11 @@
 	{# object_listで、指定のモデル(ここではTodoモデル)の一覧を操作できる #}
 	{% for todo in object_list %}
 	<div>
-		<h2>{{todo.title}}</h2>
+		<div class='todo-list-head'>
+			<h2>{{todo.title}}</h2>
+			<span>{{todo.duedate}}</span>
+			<span class='badge priority-{{todo.priority}}'>{{todo.priority}}</span>
+		</div>
 		{# 個別のデータを取得できるように、todo.idを指定する #}
 		<p>
 			<a class='btn blue' href="/detail/{{todo.id}}">詳細</a>
