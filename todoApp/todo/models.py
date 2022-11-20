@@ -7,3 +7,6 @@ class TodoModel(models.Model):
     # カラム名と型を定義
     title = models.CharField(max_length=100)
     memo = models.TextField()
+
+    def __str__(self):
+        return self.title
