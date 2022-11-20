@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block header %}{% endblock header %}
+
+{% block content %}
+<h1>ユーザー登録</h1>
+<form action="" method="POST">
+	<div>
+		<label for="username">
+			ユーザー名
+			<input type="text" id="username" name="username" />
+		</label>
+	</div>
+
+	<div>
+		<label for="password">
+			パスワード
+			<input type="password" id="password" name="password" />
+		</label>
+	</div>
+
+	<div>
+		<button type="submit">登録</button>
+	</div>
+	{% csrf_token %}
+</form>
+{% endblock content %}
