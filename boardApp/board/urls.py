@@ -13,6 +13,7 @@ from .views import sign_out
 from .views import dashboard
 from .views import show_post
 from .views import increase_like
+from .views import mark_read
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -22,6 +23,7 @@ urlpatterns = [
     path('dashboard', dashboard, name='dashboard'),
     path('post/<int:pk>', show_post, name='show_post'),
     path('post/<int:pk>/increase_like', increase_like, name='increase_like'),
+    path('post/<int:pk>/mark_read', mark_read, name='mark_read'),
 ] \
 + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) \
 + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

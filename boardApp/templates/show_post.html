@@ -18,6 +18,11 @@
 			<button type="submit">{{post.like}} いいね</button>
 			{% csrf_token %}
 		</form>
+				
+		<form action="{% url 'mark_read' post.pk %}" method="POST">
+			<button type="submit">{{post.read}} 既読</button>
+			{% csrf_token %}
+		</form>
 	</div>
 	<a href="{%url 'dashboard'%}">一覧に戻る</a>
 {% endblock content %}

@@ -118,3 +118,36 @@ def increase_like(req, pk):
             return redirect('/dashboard')
     else:
         return redirect('/dashboard', {'error': '不正な操作が行われました'})
+
+def mark_read(req, pk):
+    if req.method == 'POST':
+        post = Post.objects.get(pk=pk)
+        if post is None:
+             return render(req, 'dashboard.html', {'error': '不正な操作が行われました'})
+        
+        # 戻り先を設定しておく
+        referer = req.environ.get('HTTP_REFERER')
+        if referer:
+            back_url = referer
+        else:
+            back_url = '/dashboard'
+
+        # すでに既読にしている場合は何もしない
+        # 既読済みかどうかは、read_text の中にusername があるかどうか
+        username = req.user.get_username()
+        if username in post.read_text:
+            return redirect(back_url)
+        
+        # read_text にuser_name を追記し、既読件数を増加
+        try:
+            post.read += 1
+            post.read_text += ' ' + username
+            post.save()
+        except:
+            return render(req, 'dashboard.html', {'error': '既読に設定できませんでした'})
+        
+        # 値を更新出来たら、元の画面に戻す
+        return redirect(back_url)
+        
+    else:
+        return redirect('/dashboard', {'error': '不正な操作が行われました'})
