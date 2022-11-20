@@ -8,5 +8,5 @@
 	{# objectで、urlパラメータに含められたidで特定した内容を操作できる #}
 	<h1>{{object.title}}</h1>
 	<div>{{object.memo}}</div>
-	<a href="/list">一覧に戻る</a>
+	<a href="{% url 'list' %}">一覧に戻る</a>
 {% endblock content %}

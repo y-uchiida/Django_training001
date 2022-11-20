@@ -6,7 +6,7 @@
 
 {% block content %}
 	<div>
-		<a href="/create">Todoを追加する</a>
+		<a href="{% url 'create' %}">Todoを追加する</a>
 	</div>
 	{# object_listで、指定のモデル(ここではTodoモデル)の一覧を操作できる #}
 	{% for todo in object_list %}
@@ -18,9 +18,9 @@
 		</div>
 		{# 個別のデータを取得できるように、todo.idを指定する #}
 		<p>
-			<a class='btn blue' href="/detail/{{todo.id}}">詳細</a>
-			<a class='btn green' href="/update/{{todo.id}}">編集</a>
-			<a class='btn red' href="/delete/{{todo.id}}">削除</a>
+			<a class='btn blue' href="{% url 'detail' todo.pk %}">詳細</a>
+			<a class='btn green' href="{% url 'update' todo.pk %}">編集</a>
+			<a class='btn red' href="{% url 'delete' todo.pk %}">削除</a>
 		</p>
 		<hr />
 	</div>
