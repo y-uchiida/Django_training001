@@ -1,0 +1,8 @@
+<h1>Todo list</h1>
+
+{% for todo in object_list %}
+<div>
+  <h2>{{todo.title}}</h2>
+  <p>{{todo.memo}}</p>
+</div>
+{% endfor %}
