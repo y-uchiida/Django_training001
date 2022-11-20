@@ -10,7 +10,11 @@
 {% block content %}
 	{% for post in posts %}
 		<div>
-			<h2>{{post.title}}</h2>
+			<h2>
+				<a href="{% url 'show_post' post.pk %}">
+					{{post.title}}
+				</a>
+			</h2>
 			<div>{{post.message}}</div>
 			<p>投稿者: {{post.user}}</p>
 		</div>

@@ -18,6 +18,9 @@ from django.contrib.auth import logout
 # 認証していなければサインイン画面に遷移させるデコレータを読み込み
 from django.contrib.auth.decorators import login_required
 
+# 指定の条件にマッチしたオブジェクトが無ければ404 エラーを返すメソッドを読み込み
+from django.shortcuts import get_object_or_404
+
 from .models import Post
 
 # Create your views here.
@@ -86,3 +89,8 @@ def dashboard(req):
     # 投稿の全データを取得
     posts = Post.objects.all()
     return render(req, 'dashboard.html', {'posts': posts})
+
+@login_required
+def show_post(req, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(req, 'show_post.html', {'post': post})
