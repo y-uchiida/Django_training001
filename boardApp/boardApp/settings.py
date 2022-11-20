@@ -140,3 +140,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # メディアファイルの参照用URLを指定
 MEDIA_URL = '/media/'
+
+# ログイン処理に利用するURLを指定
+LOGIN_URL = '/auth/sign-in'

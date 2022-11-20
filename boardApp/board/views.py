@@ -12,6 +12,9 @@ from django.contrib.auth import authenticate
 # 指定のユーザーオブジェクトでログインするメソッドを読み込み
 from django.contrib.auth import login
 
+# 認証していなければサインイン画面に遷移させるデコレータを読み込み
+from django.contrib.auth.decorators import login_required
+
 from .models import Post
 
 # Create your views here.
@@ -70,6 +73,8 @@ def sign_in(req):
     # 1. リクエストオブジェクト, 2. テンプレートのhtml, 3. 描画に用いるデータ
     return render(req, 'sign_in.html', {})
 
+# login_required で、ログインしていなければ表示できないようにする
+@login_required
 def dashboard(req):
     # 投稿の全データを取得
     posts = Post.objects.all()
